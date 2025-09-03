@@ -17,7 +17,7 @@
 ```bash
 # ====== EDIT THESE 8–10 LINES ONLY ======
 SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"
-RESOURCE_GROUP="Tredence-Batch1"
+RESOURCE_GROUP="Tredence-B4"
 LOCATION="eastus"                       # e.g., eastus, swedencentral, francecentral (must support Azure OpenAI)
 ACCOUNT_NAME="myopenaiacct123"          # globally unique, 2–24 chars, letters/digits only
 DEPLOYMENT_NAME="telcogpt"              # your deployment (serving) name
