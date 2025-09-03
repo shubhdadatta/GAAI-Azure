@@ -16,11 +16,11 @@
 
 ```bash
 # ====== EDIT THESE 8–10 LINES ONLY ======
-SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"
+SUBSCRIPTION_ID="f1f38cab-25d4-42b5-8f18-26c8f2bf1954"
 RESOURCE_GROUP="Tredence-B4"
 LOCATION="eastus"                       # e.g., eastus, swedencentral, francecentral (must support Azure OpenAI)
 ACCOUNT_NAME="myopenaiacct123"          # globally unique, 2–24 chars, letters/digits only
-DEPLOYMENT_NAME="telcogpt"              # your deployment (serving) name
+DEPLOYMENT_NAME="gpt4o"              # your deployment (serving) name
 MODEL_NAME="gpt-4o-mini"                # e.g., gpt-4o, gpt-4o-mini, o3-mini, text-embedding-3-large
 MODEL_VERSION="2024-07-18"              # keep as provided or change as needed
 SKU_NAME="Standard"                     # Standard or Enterprise (if available to you)
