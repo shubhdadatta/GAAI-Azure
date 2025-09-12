@@ -7,6 +7,7 @@ __pycache__/
 *$py.class
 mlruns
 Project1/.env
+Project1/backend/Project1
 
 # C extensions
 *.so
