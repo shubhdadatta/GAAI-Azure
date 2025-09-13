@@ -56,9 +56,10 @@ It is implemented with **FastAPI + Azure OpenAI + MLflow + Key Vault + App Insig
 | **Azure OpenAI**                    | LLM inference with GPT-4o-mini deployment.                             |
 | **Application Insights**            | Monitor requests, latency, and logs.                                   |
 
-
+## Architecture
+---
 <img src="project1_azure.png" alt="Architecture Diagram" width="700"/>
-
+---
 ---
 
 ## ⚙️ Environment Variables
