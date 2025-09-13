@@ -1,5 +1,7 @@
 genai
 .env
+Concept_langfuse_prompt_management_version_Control.ipynb
+Concept_NLP2SQL_Chains.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
