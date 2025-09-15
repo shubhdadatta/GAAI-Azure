@@ -8,8 +8,13 @@ __pycache__/
 *.py[codz]
 *$py.class
 mlruns
-Project1/.env
+Project1/.
+p1env
 Project1/backend/project1
+sp.json
+Project-AI_Career_Companion/.env
+Project-AI_Career_Companion/backend/.env
+
 
 # C extensions
 *.so

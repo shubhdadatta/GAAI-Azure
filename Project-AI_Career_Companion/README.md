@@ -170,6 +170,7 @@ AZURE_TENANT_ID=$(jq -r .tenantId sp.json)
 ---
 
 ### 5. Create `.env` File
+Make sure the current locaiton on the terminal is Project-AI_Career_Companion folder, so that .env should be created in that folder, it should not overwrite your actual .env from main repo.
 
 ```bash
 cat <<EOF > .env
@@ -200,11 +201,13 @@ EOF
 ---
 
 ### 6. Setup Python Virtual Environment
+Make sure the environment location is outside the Project-AI_Career_Companion folder.
 
 ```bash
-cd backend
+cd ..
 python3 -m venv p1env
 source p1env/bin/activate
+cd Project-AI_Career_Companion/backend
 pip install -r requirements.txt
 ```
 
@@ -235,16 +238,17 @@ Open browser: [http://127.0.0.1:8080](http://127.0.0.1:8080)
 ---
 
 ### 9. Build & Test Docker Image
+Make sure the current location is Project-AI_career_companion
 
 ```bash
-cd backend
 DOCKER_IMAGE=career-backend-$NAME
 
 # Build
+cd ..
 docker build -f Dockerfile -t $DOCKER_IMAGE .
 
 # Run locally with .env
-docker run -p 8000:8000 --name $DOCKER_IMAGE-container $DOCKER_IMAGE
+docker run -p 8000:8000 -p 8080:8080 --name $DOCKER_IMAGE-container $DOCKER_IMAGE
 
 # Test
 curl http://127.0.0.1:8000/health
@@ -256,13 +260,17 @@ curl http://127.0.0.1:8000/health
 
 ```bash
 # login to ACR
+
 ACR_USERNAME=$(az acr credential show --name $ACR_NAME --query "username" -o tsv)
 ACR_PASSWORD=$(az acr credential show --name $ACR_NAME --query "passwords[0].value" -o tsv)
 sudo az acr login -n $ACR_NAME -u $ACR_USERNAME -p $ACR_PASSWORD
+az acr update -n $ACR_NAME --admin-enabled true  
 
 # push backend image to ACR
 docker tag $DOCKER_IMAGE $ACR_NAME.azurecr.io/$DOCKER_IMAGE:latest
-docker push $ACR_NAME.azurecr.io/$DOCKER_IMAGE:latest
+sudo docker push $ACR_NAME.azurecr.io/$DOCKER_IMAGE:latest 
+
+
 ```
 
 
@@ -277,9 +285,10 @@ az container create -g $RESOURCE_GROUP -n $ACI_NAME \
   --registry-login-server $ACR_NAME.azurecr.io \
   --registry-username $(az acr credential show -n $ACR_NAME --query username -o tsv) \
   --registry-password $(az acr credential show -n $ACR_NAME --query passwords[0].value -o tsv) \
-  --cpu 1 --memory 2 --os-type Linux \
-  --ports 8000 --ip-address Public \
+  --cpu 1 --memory 1 --os-type Linux \
+  --ports 8000 8080 --ip-address public \
   --dns-name-label aicareer-demo-$NAME
+
 
 # check list of containers on ACI
 az container list -g $RESOURCE_GROUP -o table

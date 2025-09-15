@@ -63,10 +63,10 @@ async def startup_event():
         
         # Pre-load commonly used prompts
         prompt_files = {
-            "skill_gap_analysis": "prompts/skill_gap_prompt.txt",
-            "career_plan_generation": "prompts/career_plan_prompt.txt",
-            "performance_review": "prompts/review_prompt.txt",
-            "mentor_simulation": "prompts/mentor_prompt.txt"
+            "skill_gap_analysis2": "prompts/skill_gap_prompt.txt",
+            "career_plan_generation2": "prompts/career_plan_prompt.txt",
+            "performance_review2": "prompts/review_prompt.txt",
+            "mentor_simulation2": "prompts/mentor_prompt.txt"
         }
         
         for prompt_name, file_path in prompt_files.items():
@@ -107,7 +107,7 @@ def analyze_skills(req: SkillGapRequest):
     try:
         with RequestLogger(logger, "/analyze_skills", req.dict()):
             logger.info("Starting skills gap analysis")
-            print(req.dict())
+            #print(req.dict())
             
             # Load prompt with fallback
             prompt_template = mlflow_service.load_prompt(
@@ -116,12 +116,12 @@ def analyze_skills(req: SkillGapRequest):
             # Build prompt
             prompt = prompt_template.format(**req.dict())
             logger.info("Prompt built successfully for skills analysis")
-            print(prompt)
+            #print(prompt)
             
             # Call OpenAI
             response = openai_service.call_openai(prompt)
             logger.info("Received response from OpenAI for skills analysis")
-            print(response)
+            #print(response)
             
             # Log to MLflow
             mlflow_service.log_prompt_interaction("analyze_skills", prompt, response)
@@ -150,11 +150,11 @@ def generate_plan(req: CareerPlanRequest):
             
             # Load prompt with fallback
             prompt_template = mlflow_service.load_prompt(
-                "career_plan_generation"
+                "career_plan_generation2"
             )
             
             # Build prompt
-            prompt = prompt_template.format(**req)
+            prompt = prompt_template.format(**req.dict())
             logger.info("Prompt built successfully for career plan generation")
             
             # Call OpenAI
@@ -188,10 +188,10 @@ def performance_review(req: ReviewRequest):
             
             # Load prompt with fallback
             prompt_template = mlflow_service.load_prompt(
-                "performance_review")
+                "performance_review2")
             
             # Build prompt
-            prompt = prompt_template.format(**req)
+            prompt = prompt_template.format(**req.dict())
             logger.info("Prompt built successfully for performance review")
             
             # Call OpenAI
@@ -225,11 +225,11 @@ def mentor_simulation(req: MentorRequest):
             
             # Load prompt with fallback
             prompt_template = mlflow_service.load_prompt(
-                "mentor_simulation",
+                "mentor_simulation2",
             )
             
             # Build prompt
-            prompt = prompt_template.format(**req)
+            prompt = prompt_template.format(**req.dict())
             logger.info("Prompt built successfully for mentor simulation")
             
             # Call OpenAI

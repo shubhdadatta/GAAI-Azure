@@ -1,4 +1,4 @@
-const API_BASE = "http://127.0.0.1:8000"; // Change to ACI endpoint after deployment
+const API_BASE = "";
 
 // --- Tab switching ---
 const tabButtons = document.querySelectorAll(".tab-btn");
