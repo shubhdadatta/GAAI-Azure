@@ -259,6 +259,17 @@ curl http://127.0.0.1:8000/health
 ### 10. Push Image to ACR
 
 ```bash
+# update frontned/app.js with ACI Configuration
+const API_BASE = "http://aicareer-demo-anshu.centralindia.azurecontainer.io";
+
+# delete previous containers and images
+sudo docker stop $(sudo docker ps -aq)
+sudo docker rm $(sudo docker ps -aq)
+sudo docker rmi $(sudo docker images -aq) --force
+
+# Rebuild Docker image - navigate to the Project-AI_career_companion folder
+docker build -f Dockerfile -t $DOCKER_IMAGE .
+
 # login to ACR
 
 ACR_USERNAME=$(az acr credential show --name $ACR_NAME --query "username" -o tsv)

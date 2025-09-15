@@ -1,4 +1,4 @@
-const API_BASE = "";
+const API_BASE = "http://aicareer-demo-anshu.centralindia.azurecontainer.io";
 
 // --- Tab switching ---
 const tabButtons = document.querySelectorAll(".tab-btn");
