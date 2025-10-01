@@ -1,2 +1,3 @@
 # GAAI-B4-Azure
 Generative AI Architect Program for Tredence Batch 4 with Azure
+PINECONE_API_KEY=pcsk_3sQW5Q_D5rWa1uWzhFCrXyLeupVQgjKn8onPJ7PVVtdb45bvkw9Aa4Yb9cA9gMdvD9T7qd
